@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "c8d3c429-a7d2-4f2e-b56f-a7d092058758",
+		"name": "kumparan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:1323/v1/articles",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "1323",
+					"path": [
+						"v1",
+						"articles"
+					],
+					"query": [
+						{
+							"key": "author",
+							"value": "Nur Huda Bikhoir",
+							"disabled": true
+						},
+						{
+							"key": "query",
+							"value": "body",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post new article",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"author\": \"Nur Huda Bikhoir\", \n    \"title\": \"Judul pertama\", \n    \"body\": \"deskripsi artikel\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:1323/v1/articles",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "1323",
+					"path": [
+						"v1",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

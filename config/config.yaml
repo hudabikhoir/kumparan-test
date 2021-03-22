@@ -1,0 +1,14 @@
+port: 1323
+database:
+  driver: "mysql" #possible value are mongodb or mysql
+  address: "127.0.0.1"
+  port: 3306
+  username: "root"
+  password: "toor"
+  name: "kumparan-test"
+cache:
+  driver: "redis"
+  address: "127.0.0.1"
+  port: 6379
+  password: ""
+  dbnumber: 1

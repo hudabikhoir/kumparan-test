@@ -1,0 +1,53 @@
+version: '2'
+
+services:
+  # https://portainer.io/
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "9100:9000"
+    command: -H unix:///var/run/docker.sock --no-auth
+    # command: "-H unix:///var/run/docker.sock --admin-password-file 'data/password.txt'"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/portainer:/data
+    restart: always
+
+  mysql_server:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+    ports:
+      - 3306:3306
+    restart: always
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./mysql:/etc/mysql/conf.d
+      - ./data/log/mysql:/var/log/mysql
+    command: ["mysqld", "--log-bin"]
+  
+  redis_server:
+    image: redis
+    command: ["redis-server"]
+    restart: always
+    ports:
+      - 6379:6379
+
+  #### MONGO 4 REPLICA SET
+  #### Container name need to be set in your /etc/hosts file
+
+  mongodb_server:
+    image: mongo:latest
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    volumes:
+      - ./data/mongodb:/data/db
+    ports:
+      - 27017:27017
+    command: ["mongod", "--logpath=/dev/null", "--bind_ip_all"]
+  
+networks: 
+  default:
+    external:
+      name: my-shared-network
